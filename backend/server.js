@@ -8,6 +8,8 @@ dotenv.config();
 connectDB();
 const app = express();
 
+app.use(express.json());
+
 app.get("/", (req, res) => {
   res.send("API is Running");
 });
@@ -21,6 +23,8 @@ app.get("/api/chat/:id", (req, res) => {
   const singleChat = chats.find((c) => c._id === req.params.id);
   req.send(singleChat);
 });
+
+app.use("/api/user", userRoutes);
 
 const PORT = process.env.PORT || 5000;
 

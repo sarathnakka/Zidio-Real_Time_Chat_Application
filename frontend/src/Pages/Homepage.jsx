@@ -5,6 +5,18 @@ import Signup from "../components/Authentication/Signup";
 
 
 const Homepage = () => {
+
+  const history = useHistory();
+
+  useEffect(() => {
+      const user = JSON.parse(localStorage.getItem("user"));
+      setUser(user);
+      if (!user) {
+          history.push("/charts");
+      }
+
+  },[history]);
+
   return <Container maxW="xl" centerContent>
   <Box
   d="flex"

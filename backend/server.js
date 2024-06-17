@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const { chats } = require("./data/data");
 const connectDB = require("./config/db");
+const { Socket } = require("socket.io");
 
 dotenv.config();
 
@@ -24,8 +25,17 @@ app.get("/api/chat/:id", (req, res) => {
   req.send(singleChat);
 });
 
-app.use("/api/user", userRoutes);
-
 const PORT = process.env.PORT || 5000;
 
-app.listen(5000, console.log("Server Started on PORT  ${PORT}"));
+const server = app.listen(5000, console.log("Server Started on PORT  ${PORT}"));
+
+const io = require("socket.io")(server, {
+  pingTimeout: 60000,
+  cors: {
+    origin: "http://localhost:3000",
+  },
+});
+
+io.on("connection", (socket) => {
+  console.log("connected to socket.io");
+});

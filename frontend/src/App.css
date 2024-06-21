@@ -1,12 +1,22 @@
-@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap");
+
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@100..900&display=swap');
+
+body, html {
+  margin: 0;
+  padding: 0;
+}
 
 .App {
   min-height: 100vh;
   display: flex;
-  background-image: url("./background.png");
-  background-position: center;
-  background-size: cover;
+  justify-content: center; 
+  background-image: url("./background.jpg"); 
+  background-size: 50%; 
+  background-position: left center; 
+  background-repeat: no-repeat; 
 }
+
+
 
 ::-webkit-scrollbar {
   width: 0px;

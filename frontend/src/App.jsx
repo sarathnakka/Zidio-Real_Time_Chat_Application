@@ -1,5 +1,5 @@
 import "./App.css";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Homepage from "./Pages/Homepage";
 import Chatpage from "./Pages/Chatpage";
 import "./App.css";
@@ -7,12 +7,12 @@ import "./App.css";
 function App() {
   return (
     <div className="App">
-      <Router>
+      <Route>
         <Switch>
           <Route path="/" exact component={Homepage} />
           <Route path="/chats" component={Chatpage} />
         </Switch>
-      </Router>
+      </Route>
     </div>
   );
 }

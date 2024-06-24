@@ -1,31 +1,53 @@
-import { createContext, useEffect } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+
 const ChatContext = createContext();
 
-const ChatProvider = ({children}) => {
-    const [user, setUser] = useState();
+export const ChatProvider = ({ children }) => {
+  const [selectedChat, setSelectedChat] = useState(null);
+  const [user, setUser] = useState(null);
+  const [notification, setNotification] = useState([]);
+  const [chats, setChats] = useState([]);
 
-    const history = useHistory();
+  const history = useHistory();
 
-    useEffect(() => {
-        const user = JSON.parse(localStorage.getItem("user"));
-        setUser(user);
-        if (!user) {
-            history.push("/");
-        }
+  useEffect(() => {
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    setUser(userInfo);
 
-    },[history]);
+    // Redirect to "/" if userInfo is null or undefined
+    if (!userInfo) {
+      console.log("User info not found.");
+      // Handle redirection based on history availability
+      if (history) {
+        history.push("/");
+      } else {
+        console.error("History is not available.");
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [history]);
 
-
-    return (
-        <ChatContext.Provider value={{user, setUser}}>
-        {childer}
-        </ChatContext.Provider>
-    );
+  return (
+    <ChatContext.Provider
+      value={{
+        selectedChat,
+        setSelectedChat,
+        user,
+        setUser,
+        notification,
+        setNotification,
+        chats,
+        setChats,
+      }}
+    >
+      {children}
+    </ChatContext.Provider>
+  );
 };
 
-export const ChatState = () => {
-    return useContext(ChatProvider);
+export const useChatState = () => {
+  return useContext(ChatContext);
 };
 
 export default ChatProvider;

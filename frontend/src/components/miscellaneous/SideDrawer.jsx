@@ -25,13 +25,27 @@ import axios from "axios";
 import { useToast } from "@chakra-ui/toast";
 import ChatLoading from "../ChatLoading";
 import { Spinner } from "@chakra-ui/spinner";
-
+import ProfileModal from "./ProfileModal";
+import NotificationBadge from "react-notification-badge";
+import { Effect } from "react-notification-badge";
+import { getSender } from "../../config/ChatLogics";
+import UserListItem from "../userAvatar/UserListItem";
+import { useChatState } from "../../Context/ChatProvider"; // Updated import statement
 
 function SideDrawer() {
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [loading, setLoading] = useState(false);
   const [loadingChat, setLoadingChat] = useState(false);
+
+  const {
+    setSelectedChat,
+    user,
+    notification,
+    setNotification,
+    chats,
+    setChats,
+  } = useChatState(); // Using useChatState to get context values
 
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -111,8 +125,9 @@ function SideDrawer() {
   return (
     <>
       <Box
-        d="flex"
-        justifyContent="space-between"
+        display="flex"
+        flexDirection="row"
+        justifyContent="space-evenly"
         alignItems="center"
         bg="white"
         w="100%"
@@ -121,15 +136,17 @@ function SideDrawer() {
       >
         <Tooltip label="Search Users to chat" hasArrow placement="bottom-end">
           <Button variant="ghost" onClick={onOpen}>
-            <i className="fas fa-search"></i>
+            <i class="fas fa-search"></i>
             <Text d={{ base: "none", md: "flex" }} px={4}>
               Search User
             </Text>
           </Button>
         </Tooltip>
+
         <Text fontSize="2xl" fontFamily="Work sans">
-          Talk-A-Tive
+          Connectify
         </Text>
+
         <div>
           <Menu>
             <MenuButton p={1}>
@@ -158,12 +175,7 @@ function SideDrawer() {
           </Menu>
           <Menu>
             <MenuButton as={Button} bg="white" rightIcon={<ChevronDownIcon />}>
-              <Avatar
-                size="sm"
-                cursor="pointer"
-                name={user.name}
-                src={user.pic}
-              />
+              <Avatar size="sm" cursor="pointer" name={user.name} src={user.pic} />
             </MenuButton>
             <MenuList>
               <ProfileModal user={user}>
@@ -210,3 +222,4 @@ function SideDrawer() {
 }
 
 export default SideDrawer;
+

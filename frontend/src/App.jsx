@@ -1,5 +1,5 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import "./App.css";
+import { Route } from "react-router-dom";
 import Homepage from "./Pages/Homepage";
 import Chatpage from "./Pages/Chatpage";
 import "./App.css";

@@ -13,14 +13,28 @@ for an enriched user experience.
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+<B>Authentication
+
+![Screenshot (131)](https://github.com/user-attachments/assets/c5bb930a-9a7a-40d6-8a72-c75b1b17d1d5)
+
+![Screenshot (132)](https://github.com/user-attachments/assets/e7d78196-6db9-4dfe-9d52-12726265adb2)
+
+Chats
+
+![Screenshot (137)](https://github.com/user-attachments/assets/71a9b928-8fc1-44ee-bf3c-24d860285fa5)
+
+![Screenshot (135)](https://github.com/user-attachments/assets/a4c69b28-a04e-44d8-9679-9cf027ac5e74)
+
+![Screenshot (139)](https://github.com/user-attachments/assets/2c11e49b-540a-41e7-b761-2da0105b7fd2)
+
+
 
 
 ## Tech Stack
 
-**Client:** ReactJs, ChakraUI
+**Frontend:** ReactJs, 
 
-**Server:** Node, Express, Socket.IO, MongoDB
+**Backend:** Node, Express, Socket.IO, MongoDB
 
 
 <p>
